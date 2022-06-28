@@ -1,9 +1,16 @@
 import { motion } from "framer-motion"
-import { AiOutlineMenu } from 'react-icons/ai'
+import { useState } from "react"
+import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
 import { Link } from 'react-router-dom'
 import ThemeToggle from './ThemeToggle'
 
 const NavBar = () => {
+  const [nav, setNav] = useState(false)
+  
+  const handleNavToggle = () => {
+    setNav(!nav)
+  }
+  
   return (
     <motion.div
       initial= {{x: -50}}
@@ -32,12 +39,15 @@ const NavBar = () => {
         
       </motion.div>
       {/* Menu Icon */}
-      <div className="block md:hidden cursor-pointer z-10">
-        <AiOutlineMenu/>
+      <div className="block md:hidden cursor-pointer z-10" onClick={handleNavToggle}>
+        {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={ 20} />}
       </div>
       {/* Mobile Menu */}
-      <div className="md:hidden fixed left-0 top-20 flex flex-col items-center justify-between w-full h-[90%]
-        bg-primary ease-in z-10">
+      <div className={
+          nav
+            ? 'md:hidden fixed left-0 top-20 flex flex-col items-center justify-between w-full h-[90%] bg-primary ease-in duration-300 z-10'
+            : 'fixed left-[-100%] top-20 h-[90%] flex flex-col items-center justify-between ease-in duration-300'
+        }>
         
         <div className="ml-auto py-1 border-b border-r"><ThemeToggle /></div>
         
