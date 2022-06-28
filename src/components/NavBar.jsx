@@ -5,7 +5,12 @@ import ThemeToggle from './ThemeToggle'
 
 const NavBar = () => {
   return (
-    <div className="rounded-div flex items-center justify-between h-20 font-bold">
+    <motion.div
+      initial= {{x: -50}}
+      animate={{ x: 0 }}
+      transition={{ ease: "easeInOut", duration: 2 }}
+      
+      className="rounded-div flex items-center justify-between h-20 font-bold">
       <Link to="/">
         <motion.div
           whileTap={{ scaleY: 0.5 }}>
@@ -15,10 +20,17 @@ const NavBar = () => {
       <div className="hidden md:block">
         <ThemeToggle/>
       </div>
-      <div className="hidden md:block">
-        <Link to="/signin">Sign-In</Link>
-        <Link to="/signup">Sign-Up</Link>
-      </div>
+      <motion.div className="hidden md:block" >
+
+        <Link to="/signin" className="p-4 hover:text-accent">Sign-In</Link>
+
+       <motion.button whileTap={{scale:0.6}}>
+        <Link to="/signup" className="bg-button text-btnText px-5 py-2 ml-2 rounded-2xl shadow-lg hover:shadow-2xl">
+           Sign-Up
+          </Link>
+        </motion.button>
+        
+      </motion.div>
       {/* Menu Icon */}
       <div>
         <AiOutlineMenu/>
@@ -43,7 +55,7 @@ const NavBar = () => {
           </Link>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
