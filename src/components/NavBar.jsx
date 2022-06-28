@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import ThemeToggle from './ThemeToggle'
 
 const NavBar = () => {
   return (
@@ -6,6 +7,9 @@ const NavBar = () => {
       <Link to="/">
           <h1>DIGI-MONEY</h1>
       </Link>
+      <div>
+        <ThemeToggle/>
+      </div>
     </div>
   )
 }
