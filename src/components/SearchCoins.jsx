@@ -1,9 +1,17 @@
-import React from "react";
-
+import React from "react"
+import ShowCoin from "./ShowCoin"
 const SearchCoins = ({ coins }) => {
-  console.log(coins);
+  
   return (
-    <div>SearchCoins</div>
+    <div>
+      <div>
+        <h1>Search Coins</h1>
+        <form>
+          <input type="text" placeholder="Search Coins" />
+        </form>
+        <ShowCoin coins={ coins} />
+      </div>
+    </div>
   )
 }
 
