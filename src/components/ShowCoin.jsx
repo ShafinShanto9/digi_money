@@ -1,8 +1,9 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { AiOutlineStar } from 'react-icons/ai'
 import { Sparklines,SparklinesLine  } from 'react-sparklines';
 
-const ShowCoin = ({coins}) => {
+const ShowCoin = ({ coins, searchCoinText }) => {
+  
   return (
     <div>
         <table>
@@ -21,7 +22,17 @@ const ShowCoin = ({coins}) => {
               </thead>  
               <tbody>
                   {
-                      coins.map((coin) => (
+            coins.filter((value) => {
+                    
+                    if (searchCoinText === '') {
+                      return value;
+                    } else if (
+                      value.name.toLowerCase().includes(searchCoinText.toLowerCase())
+                    ) {
+                      return value
+                    }
+              
+                      }).map((coin) => (
                           <tr key={coin.id}>
                               <td><AiOutlineStar/></td>
                               <td>{ coin.market_cap_rank }</td>
