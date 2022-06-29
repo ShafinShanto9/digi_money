@@ -1,7 +1,11 @@
+import SearchCoins from "../components/SearchCoins"
 
-const Home = () => {
+const Home = ({ coins }) => {
+  
   return (
-    <div>Home</div>
+    <div>
+      <SearchCoins coins={ coins} />
+    </div>
   )
 }
 
