@@ -25,10 +25,12 @@ function App() {
       <NavBar />
       <Routes>
         <Route path="/" element={<Home coins={ coins} />}></Route>
-        <Route path="/coinpage" element={<CoinPage/>}></Route>
         <Route path="/signin" element={<Signin/>}></Route>
         <Route path="/signup" element={<Signup/>}></Route>
         <Route path="/account" element={<Account/>}></Route>
+        <Route path="/coin/:coinId" element={<CoinPage />}>
+          <Route path=":coinId"/>
+        </Route>
       </Routes>
     </ThemeProvider>
   );
