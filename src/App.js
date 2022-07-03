@@ -1,6 +1,7 @@
 import axios from "axios";
 import { useEffect, useState } from "react";
 import { Route, Routes } from "react-router-dom";
+import Footer from "./components/Footer";
 import NavBar from "./components/NavBar";
 import { ThemeProvider } from "./context/ThemeContext";
 import Account from "./pages/Account";
@@ -32,6 +33,7 @@ function App() {
           <Route path=":coinId"/>
         </Route>
       </Routes>
+      <Footer/>
     </ThemeProvider>
   );
 }
