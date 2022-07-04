@@ -1,5 +1,6 @@
 import { AiFillLock, AiOutlineMail } from "react-icons/ai"
 import { Link } from "react-router-dom"
+import { motion } from "framer-motion"
 
 const Signin = () => {
   return (
@@ -29,9 +30,9 @@ const Signin = () => {
               <AiFillLock className='absolute right-2 top-3 text-gray-400' />
             </div>
           </div>
-          <button className='w-full my-2 p-3 bg-button text-btnText rounded-2xl shadow-xl'>
+          <motion.button whileTap={{scale:0.6}} className='w-full my-2 p-3 bg-button text-btnText rounded-2xl shadow-xl'>
             Sign in
-          </button>
+          </motion.button>
         </form>
         <p className='my-4'>
           Don't have an account?{' '}
