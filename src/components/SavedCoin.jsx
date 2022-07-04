@@ -14,33 +14,33 @@ const SavedCoin = () => {
           You don't have any coins saved. Please save a coin to add it to your
           Saved list. <Link to='/'><span className='font-bold text-accent '>Click here to search coins.</span></Link>
         </p> : (
-            <table>
+            <table className='w-full border-collapse text-center'>
                 <thead>
-                  <tr>
-                      <th>Rank #</th>            
-                      <th>Coin</th>            
-                      <th>Remove</th>            
+                  <tr className='border-b'>
+                      <th className='px-4'>Rank #</th>            
+                      <th className='text-left'>Coin</th>            
+                      <th className='text-left'>Remove</th>            
                     </tr>       
                 </thead>  
             <tbody>              
                  {
                 conis.map((coin) => (
-                    <tr key={coin.id}>
+                    <tr key={coin.id} className="h-[60px] overflow-hidden">
                         <td>
                             {coin?.rank}
                         </td>
                         <td>
                             <Link to={`coin/${coin.id}`}>
-                                <div>
-                                    <img src={coin?.image} alt="" />
+                                <div className='flex items-center'>
+                                    <img src={coin?.image} className="w-8 mr-4" alt="" />
                                     <div>
-                                        <p>{coin?.name}</p>
-                                        <p>{ coin?.symbol.toUppercase()}</p>
+                                        <p className='hidden sm:table-cell'>{coin?.name}</p>
+                                        <p className='text-gray-500 text-sm text-left'>{ coin?.symbol.toUppercase()}</p>
                                     </div>
                                 </div>
                             </Link>
                         </td>
-                        <td>
+                        <td className='pl-8'>
                             <AiOutlineClose className='cursor-pointer'/>
                         </td>
                     </tr>
