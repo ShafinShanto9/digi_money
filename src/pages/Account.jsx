@@ -1,5 +1,5 @@
 import { motion } from "framer-motion"
-import { useNavigate } from "react-router-dom"
+import { Navigate, useNavigate } from "react-router-dom"
 import SavedCoin from "../components/SavedCoin"
 import { UserAuth } from "../context/AuthContext"
 
@@ -15,8 +15,9 @@ const Account = () => {
       console.log(e.message);
     }
   }
-  return (
-    <div className='max-w-[1140px] mx-auto'>
+  if (user) {
+    return (
+        <div className='max-w-[1140px] mx-auto'>
       <div className='flex justify-between items-center my-12 py-8 rounded-div'>
         <div>
           <h1 className='text-2xl font-bold'>Account</h1>
@@ -35,7 +36,10 @@ const Account = () => {
         </div>
       </div>
     </div>
-  )
+    )
+  } else {
+      return <Navigate to='/signin' />
+  }
 }
 
 export default Account
