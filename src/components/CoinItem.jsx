@@ -7,15 +7,15 @@ import { db } from '../firebase';
 import { arrayUnion, doc, updateDoc } from 'firebase/firestore';
 
 const CoinItem = ({ coin }) => {
-  const [savedCoin, setSavedCoin] = useState(false);
+  const [savedCoins, setSavedCoin] = useState(false);
   const { user } = UserAuth();
 
   const coinPath = doc(db, 'users', `${user?.email}`);
-  const saveCoin = async () => {
+  const saveCoins = async () => {
     if (user?.email) {
       setSavedCoin(true);
       await updateDoc(coinPath, {
-        watchList: arrayUnion({
+        saveCoin: arrayUnion({
           id: coin.id,
           name: coin.name,
           image: coin.image,
@@ -30,8 +30,8 @@ const CoinItem = ({ coin }) => {
 
   return (
     <tr className='h-[80px] border-b overflow-hidden'>
-      <td onClick={saveCoin}>
-        {savedCoin ? <AiFillStar /> : <AiOutlineStar />}
+      <td onClick={saveCoins}>
+        {savedCoins ? <AiFillStar /> : <AiOutlineStar />}
       </td>
       <td>{coin.market_cap_rank}</td>
       <td>
