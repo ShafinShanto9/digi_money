@@ -1,14 +1,26 @@
 import { motion } from "framer-motion"
 import { useState } from "react"
 import { AiOutlineClose, AiOutlineMenu } from 'react-icons/ai'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
+import { UserAuth } from "../context/AuthContext"
 import ThemeToggle from './ThemeToggle'
 
 const NavBar = () => {
   const [nav, setNav] = useState(false)
+  const { user, logOut } = UserAuth()
+  const navigate = useNavigate()
   
   const handleNavToggle = () => {
     setNav(!nav)
+  }
+
+  const handleLogout = async() => {
+    try {
+      await logOut()
+      navigate('/')
+    } catch (e){
+      console.log(e.message);
+    }
   }
   
   return (
@@ -27,7 +39,13 @@ const NavBar = () => {
       <div className="hidden md:block">
         <ThemeToggle/>
       </div>
-      <motion.div className="hidden md:block" >
+      {user?.email ? (
+        <div>
+          <Link to='/account' className="p-4">Account</Link>
+          <motion.button onClick={handleLogout} whileTap={{scale: 0.5}} className='ml-2 border px-6 py-2 rounded-2xl shadow-lg hover:shadow-2xl hover:bg-red-400 hover:text-white '>LogOut</motion.button>
+        </div>
+      ) : (
+        <motion.div className="hidden md:block" >
 
         <Link to="/signin" className="p-4 hover:text-accent">Sign-In</Link>
 
@@ -38,6 +56,7 @@ const NavBar = () => {
         </motion.button>
         
       </motion.div>
+        )}
       {/* Menu Icon */}
       <div className="block md:hidden cursor-pointer z-10" onClick={handleNavToggle}>
         {nav ? <AiOutlineClose size={20} /> : <AiOutlineMenu size={ 20} />}
