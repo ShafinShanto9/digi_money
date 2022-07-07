@@ -7,20 +7,11 @@ import { UserAuth } from '../context/AuthContext';
 const Navbar = () => {
   const [nav, setNav] = useState(false);
   const { user, logout } = UserAuth();
-  const navigate = useNavigate();
 
   const handleNav = () => {
     setNav(!nav);
   };
 
-  const handleSignOut = async () => {
-    try {
-      await logout();
-      navigate('/');
-    } catch (e) {
-      console.log(e.message);
-    }
-  };
 
   return (
     <div className='rounded-div flex items-center justify-between h-20 font-bold'>
@@ -36,7 +27,6 @@ const Navbar = () => {
           <Link to='/account' className='p-4'>
             Account
           </Link>
-          <button onClick={handleSignOut}>Sign out</button>
         </div>
       ) : (
         <div className='hidden md:block'>
